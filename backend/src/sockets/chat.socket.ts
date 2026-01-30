@@ -1,12 +1,12 @@
 import {Server, Socket} from "socket.io";
-import jwt from "jsonwebtoken";
+import jwt, {type JwtPayload} from "jsonwebtoken";
 import {UserModel} from "../models/user.model";
 
 export const chatSocket = (io: Server) => {
     io.on("connection", async (socket: Socket) => {
         try {
             const token = socket.handshake.auth.token;
-            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string) as { id: string };
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string) as JwtPayload;
 
             const user = await UserModel.findById(decoded.id);
             if (!user) return socket.disconnect();
