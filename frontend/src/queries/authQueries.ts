@@ -4,7 +4,6 @@ import type {RegisterPayload, LoginPayload} from "../types";
 
 export const useRegister = () => {
     return useMutation({
-        mutationKey: ["auth", "me"],
         mutationFn: (data: RegisterPayload) => authService.register(data),
     });
 };
