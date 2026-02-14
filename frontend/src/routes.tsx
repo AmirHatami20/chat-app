@@ -10,28 +10,28 @@ import ChatRoom from "./pages/chat/Room";
 import NotFound from "./pages/NotFound";
 
 export const appRoutes = [
-    {
-        path: "/",
-        element: <RootLayout/>,
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      {
+        path: "auth",
+        element: <AuthLayout />,
         children: [
-            {
-                path: "auth",
-                element: <AuthLayout/>,
-                children: [
-                    {path: "login", element: <Login/>},
-                    {path: "register", element: <Register/>},
-                    {path: "forgot-password", element: <ForgotPassword/>},
-                ],
-            },
-            {
-                path: "chat",
-                element: <ChatLayout/>,
-                children: [
-                    {path: "", element: <ChatHome/>},
-                    {path: ":userId", element: <ChatRoom/>},
-                ],
-            },
-            {path: "*", element: <NotFound/>},
+          { path: "login", element: <Login /> },
+          { path: "register", element: <Register /> },
+          { path: "forgot-password", element: <ForgotPassword /> },
         ],
-    },
+      },
+      {
+        path: "chat",
+        element: <ChatLayout />,
+        children: [
+          { path: "", element: <ChatHome /> },
+          { path: ":userId", element: <ChatRoom /> },
+        ],
+      },
+      { path: "*", element: <NotFound /> },
+    ],
+  },
 ];
